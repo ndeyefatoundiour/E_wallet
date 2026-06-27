@@ -19,6 +19,7 @@
 
         controller($choix);
 
-    } while ($choix != 0);
+    } while ($choix != '0');
+
 
 ?>

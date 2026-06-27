@@ -1,37 +1,33 @@
 <?php
+    
+    require "services.php";
 
     function controller($choix) : void {
+
         switch ($choix) {
-            case 1:
-                echo "choix1";
-                break;
+            case '1':
+                creerWallet();
+            break;
 
-            case 2:
-                echo "choix2";
-                break;
+            case '2':
+                echo "choix2\n";
+            break;
 
-            case 3:
-                echo "choix3";
-                break;
+            case '3':
+                echo "choix3\n";
+            break;
 
-            case 4:
-                echo "choix4";
-                break;
+            case '4':
+                echo "choix4\n";
+            break;
 
-            case 0:
-                echo "choix0";
-                break;
+            case '0':
+                echo "BYE BYE A LA PROCHAINE\n";
+            break;
 
             default:
-                echo "choix indisponible";
-                break;
+                echo "Choix invalide, veuillez réessayer\n";
+            break;
         }
     }
-
-
-
-
-
-
-
 ?>
