@@ -1,6 +1,8 @@
 <?php
     require "controller.php";
 
+    use function App\Controller\controller;
+
     function afficherMenu() : void {
         echo "\n   Menu Distributeur   \n";
         echo "\n1 - Créer Wallet\n";

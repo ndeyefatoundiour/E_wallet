@@ -1,8 +1,19 @@
 <?php
+    namespace App\Controller;
+
     require "services.php";
+
+    use function App\Service\enregistreWallet;
+    use function App\Service\enregistreDepot;
+    use function App\Service\enregistreRetrait;
+
+    use function App\Repository\afficherWallet;
+    use function App\Repository\afficherTransaction;
+
 
     function creerWallet() {
         global $wallets;
+
         $newWallet = saisirWallet();
         
         enregistreWallet($newWallet); 
@@ -74,7 +85,7 @@
             case '3':
                 faireRetrait();
                 break;
-                
+
             case '4':
                 listerTransaction();
                 break;

@@ -1,22 +1,23 @@
 <?php
 
-    require "repository.php";
-    
+    namespace App\Validator;
+
     function validationNumb (string $telephone, string $code){
 
-    $cpt1 =  strlen($telephone);
-    $cpt2 = strlen($code);
-    
-        if($cpt1 == 9 && $cpt2 == 4){
+        $cpt1 =  strlen($telephone);
+        $cpt2 = strlen($code);
         
-            return 'valide';
-        }
+            if($cpt1 == 9 && $cpt2 == 4){
+            
+                return 'valide';
+            }
         return 'invalide';
     }
 
     function validationDebut(string $telephone ){
 
         if($telephone[0] !=='7' || ($telephone[1] !== '0' && $telephone[1] !== '1' && $telephone[1] !== '5' && $telephone[1] !== '6' && $telephone[1] !== '7' && $telephone[1] !== '8')){
+
             return 'invalide';
         }
 
@@ -26,6 +27,7 @@
     function valideterObligatoir(string $telephone , string $code , string $nomClient , $solde){
 
         if( $telephone =='' || $code =='' || $nomClient == '' || $solde ==''){
+
             return "invalide";
         }
         return "valide";
@@ -34,39 +36,34 @@
     function validerSolde(int $solde){
 
         if($solde < 0){
+
             return  "invalide";
         }
         return "valide";
     }
 
-    function uniciterTel (array $wallets,string $telephone){
+    function uniciterTel (array $wallets, string $telephone){
 
-        for ($index =0 ; $index < count($wallets); $index++){
+    $listeTelephones = array_column($wallets, 'telephone');
 
-            if($wallets[$index]['telephone'] == $telephone){
+        $index = array_search($telephone, $listeTelephones);
 
-                return $index;
-            }
-        }  
-
-        return -1;
+        return ($index !== false) ? $index : -1;
     }
 
-    function uniciterCode (array $wallets,string $code ){
+    function uniciterCode (array $wallets, string $code ){
 
-        foreach ($wallets as $index => $w) {
+    $listeCodes = array_column($wallets, 'code');
 
-            if($w['code'] == $code){
+        $index = array_search($code, $listeCodes);
 
-                return $index;
-            }  
-        }  
-        return "valide";
+        return ($index !== false) ? $index : "valide";
     }
 
     function validerMontant( int $montant) {
         
         if($montant ==='' || $montant <= 0){
+
             return "invalide";
         }
         return "valide";

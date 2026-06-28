@@ -1,5 +1,22 @@
 <?php
+    namespace App\Service;
+
     require "validator.php";
+    require "repository.php";
+
+    use function App\Validator\validationNumb;
+    use function App\Validator\validationDebut;
+    use function App\Validator\valideterObligatoir;
+    use function App\Validator\validerSolde;
+    use function App\Validator\uniciterTel;
+    use function App\Validator\uniciterCode;
+    use function App\Validator\validerMontant;
+    use function App\Validator\retraitSolde;
+
+    use function App\Repository\ajouterWallet;
+    use function App\Repository\ajouterDepot;
+    use function App\Repository\ajouterRetrait;
+
 
     function enregistreWallet(array $newWallet) {
         global $wallets;
