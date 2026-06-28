@@ -1,10 +1,10 @@
 <?php
 
-    function validationNumb (array $newWallet){
-    $numero = $newWallet['telephone'];
-    $code = $newWallet['code'];
+    require_once "repository.php";
+    
+    function validationNumb (string $telephone, string $code){
 
-    $cpt1 =  strlen($numero);
+    $cpt1 =  strlen($telephone);
     $cpt2 = strlen($code);
     
         if($cpt1 == 9 && $cpt2 == 4){
@@ -14,53 +14,72 @@
         return 'invalide';
     }
 
-    function validationDebut(array $newWallet){
+    function validationDebut(string $telephone ){
 
-        $numero = $newWallet['telephone'];
-        if($numero[0] !=='7' || ($numero[1] !== '0' && $numero[1] !== '1' && $numero[1] !== '5' && $numero[1] !== '6' && $numero[1] !== '7' && $numero[1] !== '8')){
+        if($telephone[0] !=='7' || ($telephone[1] !== '0' && $telephone[1] !== '1' && $telephone[1] !== '5' && $telephone[1] !== '6' && $telephone[1] !== '7' && $telephone[1] !== '8')){
             return 'invalide';
         }
 
         return 'valide';
     }
 
-    function valideterObligatoir(array $newWallet){
+    function valideterObligatoir(string $telephone , string $code , string $nomClient , $solde){
 
-        if( $newWallet['client']=='' || $newWallet['telephone']=='' || $newWallet['code'] == '' || $newWallet['solde'] ==''){
+        if( $telephone =='' || $code =='' || $nomClient == '' || $solde ==''){
             return "invalide";
         }
         return "valide";
     }
 
-    function validerSolde(array $newWallet){
-        if($newWallet['solde'] < 0){
+    function validerSolde(int $solde){
+
+        if($solde < 0){
             return  "invalide";
         }
         return "valide";
     }
 
-    function uniciterTel (array $wallets,array $newWallet){
+    function uniciterTel (array $wallets,string $telephone){
 
         for ($index =0 ; $index < count($wallets); $index++){
 
-            if($wallets[$index]['telephone'] == $newWallet['telephone']){
+            if($wallets[$index]['telephone'] == $telephone){
 
                 return $index;
             }
         }  
 
-        return "valide";
+        return -1;
     }
 
-    function uniciterCode (array $wallets,array $newWallet ){
+    function uniciterCode (array $wallets,string $code ){
 
         foreach ($wallets as $index => $w) {
 
-            if($w['code'] == $newWallet['code']){
+            if($w['code'] == $code){
 
                 return $index;
             }  
         }  
+        return "valide";
+    }
+
+    function validerMontant( int $montant) {
+        
+        if($montant ==='' || $montant <= 0){
+            return "invalide";
+        }
+        return "valide";
+    }
+
+    function retraitSolde(array $wallets,int $montant ,$index , int $frais) {
+
+        $walletRetrait = $wallets[$index];
+
+        if ($walletRetrait['solde'] < $montant + $frais){
+            
+            return  "solde insufisant";
+        }
         return "valide";
     }
 
