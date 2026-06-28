@@ -1,6 +1,5 @@
 <?php
-    require_once "validator.php";
-    
+    require "validator.php";
 
     function enregistreWallet(array $newWallet) {
         global $wallets;
@@ -17,7 +16,7 @@
             validerSolde($solde) == 'valide' && 
             uniciterTel($wallets, $telephone) == -1 && 
             uniciterCode($wallets, $code) == 'valide'
-        ) {
+        ){
             echo "\n    tres bien inscription reussi    \n";
             
             ajouterWallet($newWallet); 
@@ -108,7 +107,7 @@
         } else {
 
             $newRetrait['frais'] = 5000;
-            
+
             return $newRetrait['frais'];
         }
     }

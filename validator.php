@@ -1,6 +1,6 @@
 <?php
 
-    require_once "repository.php";
+    require "repository.php";
     
     function validationNumb (string $telephone, string $code){
 

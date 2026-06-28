@@ -1,5 +1,5 @@
 <?php
-    require_once "services.php";
+    require "services.php";
 
     function creerWallet() {
         global $wallets;
@@ -74,7 +74,7 @@
             case '3':
                 faireRetrait();
                 break;
-
+                
             case '4':
                 listerTransaction();
                 break;
@@ -82,7 +82,7 @@
             case '0':
                 echo "BYE BYE A LA PROCHAINE\n";
                 break;
-                
+
             default:
                 echo "Choix invalide, veuillez réessayer\n";
                 break;
